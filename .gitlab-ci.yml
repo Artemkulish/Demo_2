@@ -18,10 +18,10 @@ build:
       - mvn clean package 
     artifacts:
       paths:
-        - BE/BillingService/target/*.jar
-        expire_in: 1 day
+      - BE/BillingService/target/*.jar
+      expire_in: 1 day
       
-go:
+deploy:
     stage: deploy
     script:
       - scp BE/BillingService/target/*.jar artemkulish123@35.226.70.206:/tmp
