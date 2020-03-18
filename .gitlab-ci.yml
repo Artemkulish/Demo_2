@@ -21,7 +21,7 @@ build:
         - BE/BillingService/target/*.jar
         expire_in: 1 day
       
-deploy:
+go:
     stage: deploy
     script:
       - scp BE/BillingService/target/*.jar artemkulish123@35.226.70.206:/tmp
