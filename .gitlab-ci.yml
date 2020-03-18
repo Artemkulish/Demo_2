@@ -15,12 +15,13 @@ build:
     stage: build
     script:
       - cd BE/BillingService
-      - ls
       - mvn clean package 
-      - ls
-      - scp -r target artemkulish123@35.226.70.206:/tmp
+    artifacts:
+      paths:
+        - BE/BillingService/target/*.jar
+        expire_in: 1 day
       
-#deploy:
- #   stage: deploy
-  #  script:
-   #   - 
+deploy:
+    stage: deploy
+    script:
+      - scp BE/BillingService/target/*.jar artemkulish123@35.226.70.206:/tmp
