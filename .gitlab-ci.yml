@@ -11,7 +11,7 @@ stages:
     - build
     - deploy
 
-build:
+build1:
     stage: build
     script:
       - cd BE/CustomerService/customers
@@ -20,8 +20,19 @@ build:
       paths:
       - BE/CustomerService/customers/target/*.jar
       expire_in: 1 day
-      
+
+build2:
+    stage: build
+    script:
+      - cd BE/Gateway
+      - mvn clean package 
+    artifacts:
+      paths:
+      - BE/Gateway/target/*.jar
+      expire_in: 1 day
+
 deploy:
     stage: deploy
     script:
       - scp BE/CustomerService/customers/target/*.jar artemkulish123@35.226.70.206:/tmp
+      - scp BE/Gateway/target/*.jar artemkulish123@35.226.70.206:/tmp
