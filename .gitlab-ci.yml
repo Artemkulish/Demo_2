@@ -9,7 +9,7 @@ before_script:
 
 stages:
     - build
-    #- deploy
+    - deploy
 
 build:
     stage: build
