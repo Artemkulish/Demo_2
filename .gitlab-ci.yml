@@ -61,7 +61,7 @@ build5:
       - BE/ServiceDiscovery/target/*.jar
       expire_in: 1 day
       
- build6:
+build6:
     stage: build
     script:
       - cd BE/ServiceProvider
