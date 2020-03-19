@@ -11,7 +11,17 @@ stages:
     - build
     - deploy
 
-build1:
+build_1:
+    stage: build
+    script:
+      - cd BE/BillingService
+      - mvn clean package 
+    artifacts:
+      paths:
+      - BE/BillingService/target/*.jar
+      expire_in: 1 day
+      
+build_2:
     stage: build
     script:
       - cd BE/CustomerService/customers
@@ -21,7 +31,7 @@ build1:
       - BE/CustomerService/customers/target/*.jar
       expire_in: 1 day
 
-build2:
+build_3:
     stage: build
     script:
       - cd BE/Gateway
@@ -31,7 +41,7 @@ build2:
       - BE/Gateway/target/*.jar
       expire_in: 1 day
 
-build3:
+build_4:
     stage: build
     script:
       - cd BE/GoogleMapsMicroservice
@@ -41,7 +51,7 @@ build3:
       - BE/GoogleMapsMicroservice/target/*.jar
       expire_in: 1 day
 
-#build4:
+#build_5:
 #    stage: build
 #    script:
 #      - cd BE/OrderService
@@ -51,7 +61,7 @@ build3:
 #      - BE/OrderService/target/*.jar
 #      expire_in: 1 day
 
-build5:
+build_6:
     stage: build
     script:
       - cd BE/ServiceDiscovery
@@ -61,7 +71,7 @@ build5:
       - BE/ServiceDiscovery/target/*.jar
       expire_in: 1 day
       
-#build6:
+#build_7:
 #    stage: build
 #    script:
 #      - cd BE/ServiceProvider
@@ -74,9 +84,10 @@ build5:
 deploy:
     stage: deploy
     script:
-      - scp BE/CustomerService/customers/target/*.jar artemkulish123@$INNER_IP:/tmp
-      - scp BE/Gateway/target/*.jar artemkulish123@$INNER_IP:/tmp
-      #- scp BE/GoogleMapsMicroservice/target/*.jar artemkulish123@35.192.47.223:/tmp
-      #- scp BE/OrderService/target/*.jar artemkulish123@35.192.47.223:/tmp
-      #- scp BE/ServiceDiscovery/target/*.jar artemkulish123@35.192.47.223:/tmp
-      #- scp BE/ServiceProvider/target/*.jar artemkulish123@35.192.47.223:/tmp
+      - scp BE/BillingService/target/*.jar $UN_IP:/tmp
+      - scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
+      - scp BE/Gateway/target/*.jar $UN_IP:/tmp
+      - scp BE/GoogleMapsMicroservice/target/*.jar $UN_IP:/tmp
+      #- scp BE/OrderService/target/*.jar $UN_IP:/tmp
+      - scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
+      #- scp BE/ServiceProvider/target/*.jar $UN_IP:/tmp
