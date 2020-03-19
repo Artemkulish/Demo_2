@@ -74,9 +74,9 @@ build5:
 deploy:
     stage: deploy
     script:
-      - scp BE/CustomerService/customers/target/*.jar artemkulish123@$IP_PRODUCTION:/tmp
-      - scp BE/Gateway/target/*.jar artemkulish123@35.192.47.223:/tmp
-      - scp BE/GoogleMapsMicroservice/target/*.jar artemkulish123@35.192.47.223:/tmp
+      - scp BE/CustomerService/customers/target/*.jar artemkulish123@$INNER_IP:/tmp
+      - scp BE/Gateway/target/*.jar artemkulish123@$INNER_IP:/tmp
+      #- scp BE/GoogleMapsMicroservice/target/*.jar artemkulish123@35.192.47.223:/tmp
       #- scp BE/OrderService/target/*.jar artemkulish123@35.192.47.223:/tmp
-      - scp BE/ServiceDiscovery/target/*.jar artemkulish123@35.192.47.223:/tmp
+      #- scp BE/ServiceDiscovery/target/*.jar artemkulish123@35.192.47.223:/tmp
       #- scp BE/ServiceProvider/target/*.jar artemkulish123@35.192.47.223:/tmp
