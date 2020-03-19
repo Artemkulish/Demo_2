@@ -21,12 +21,62 @@ build1:
       - BE/CustomerService/customers/target/*.jar
       expire_in: 1 day
 
+build2:
+    stage: build
+    script:
+      - cd BE/Gateway
+      - mvn clean package 
+    artifacts:
+      paths:
+      - BE/Gateway/target/*.jar
+      expire_in: 1 day
+
+build3:
+    stage: build
+    script:
+      - cd BE/GoogleMapsMicroservice
+      - mvn clean package 
+    artifacts:
+      paths:
+      - BE/GoogleMapsMicroservice/target/*.jar
+      expire_in: 1 day
+
+#build4:
+#    stage: build
+#    script:
+#      - cd BE/OrderService
+#      - mvn clean package 
+#    artifacts:
+#      paths:
+#      - BE/OrderService/target/*.jar
+#      expire_in: 1 day
+
+build5:
+    stage: build
+    script:
+      - cd BE/ServiceDiscovery
+      - mvn clean package 
+    artifacts:
+      paths:
+      - BE/ServiceDiscovery/target/*.jar
+      expire_in: 1 day
+      
+#build6:
+#    stage: build
+#    script:
+#      - cd BE/ServiceProvider
+#      - mvn clean package 
+#    artifacts:
+#      paths:
+#      - BE/ServiceProvider/target/*.jar
+#      expire_in: 1 day
+      
 deploy:
     stage: deploy
     script:
       - scp BE/CustomerService/customers/target/*.jar artemkulish123@$IP_PRODUCTION:/tmp
-      #- scp BE/Gateway/target/*.jar artemkulish123@35.192.47.223:/tmp
-      #- scp BE/GoogleMapsMicroservice/target/*.jar artemkulish123@35.192.47.223:/tmp
+      - scp BE/Gateway/target/*.jar artemkulish123@35.192.47.223:/tmp
+      - scp BE/GoogleMapsMicroservice/target/*.jar artemkulish123@35.192.47.223:/tmp
       #- scp BE/OrderService/target/*.jar artemkulish123@35.192.47.223:/tmp
-      #- scp BE/ServiceDiscovery/target/*.jar artemkulish123@35.192.47.223:/tmp
+      - scp BE/ServiceDiscovery/target/*.jar artemkulish123@35.192.47.223:/tmp
       #- scp BE/ServiceProvider/target/*.jar artemkulish123@35.192.47.223:/tmp
