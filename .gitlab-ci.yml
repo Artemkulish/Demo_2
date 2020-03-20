@@ -92,3 +92,4 @@ deploy:
       #- scp BE/OrderService/target/*.jar $UN_IP:/tmp
       - scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
       #- scp BE/ServiceProvider/target/*.jar $UN_IP:/tmp
+
