@@ -1,4 +1,4 @@
-image: maven:3.6.3-jdk-11-openj9
+image: maven:new
 
 before_script:
     #- 'which ssh-agent || ( apt update -y && apt install openssh-client -y)'
