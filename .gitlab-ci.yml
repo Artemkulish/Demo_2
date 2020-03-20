@@ -89,7 +89,6 @@ deploy:
       #- scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
       - scp BE/Gateway/target/*.jar $UN_IP:/tmp
       - scp deploy.sh $UN_IP:/tmp
-      - 
       #- scp BE/GoogleMapsMicroservice/target/*.jar $UN_IP:/tmp
       #- scp BE/OrderService/target/*.jar $UN_IP:/tmp
       #- scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
