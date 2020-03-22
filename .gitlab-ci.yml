@@ -30,13 +30,13 @@ stages:
         expire_in: 1 week
     only:
         variables:
-            - $CI_COMMIT_MESSAGE =~ /billing/
+            - $CI_COMMIT_MESSAGE =~ /$SERVICE_NAME/
 
 build_billing:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/BillingService
-        #SERVICE_NAME: billing
+        SERVICE_NAME: billing
 
 build_customers:
     <<: *build_template
