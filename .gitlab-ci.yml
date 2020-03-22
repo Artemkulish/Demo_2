@@ -29,55 +29,30 @@ build_billing:
     variables:
         PATH_TO_APP: BE/BillingService
 
-#build_2:
-#    stage: build
-#    script:
-#      - cd BE/CustomerService/customers
-#      - mvn clean package 
-#    artifacts:
-#      paths:
-#      - BE/CustomerService/customers/target/*.jar
-#      expire_in: 1 day
+build_customer:
+    <<: *build_template
+    variables:
+        PATH_TO_APP: BE/CustomerService
 
-#build_3:
-#    stage: build
-#    script:
-#      - cd BE/Gateway
-#      - mvn clean package 
-#    artifacts:
-#      paths:
-#      - BE/Gateway/target/*.jar
-#      expire_in: 1 day
+build_gateway:
+    <<: *build_template
+    variables:
+        PATH_TO_APP: BE/Gateway
 
-#build_4:
-#    stage: build
-#    script:
-#      - cd BE/GoogleMapsMicroservice
-#      - mvn clean package 
-#    artifacts:
-#      paths:
-#      - BE/GoogleMapsMicroservice/target/*.jar
-#      expire_in: 1 day
+build_google_maps:
+    <<: *build_template
+    variables:
+        PATH_TO_APP: BE/GoogleMapsMicroservice
 
-#build_5:
-#    stage: build
-#    script:
-#      - cd BE/OrderService
-#      - mvn clean package 
-#    artifacts:
-#      paths:
-#      - BE/OrderService/target/*.jar
-#      expire_in: 1 day
-
-#build_6:
-#    stage: build
-#    script:
-#      - cd BE/ServiceDiscovery
-#      - mvn clean package 
-#    artifacts:
-#      paths:
-#      - BE/ServiceDiscovery/target/*.jar
-#      expire_in: 1 day
+#build_order_service:
+#    <<: *build_template
+#    variables:
+#        PATH_TO_APP: BE/OrderService
+        
+build_discovery_service:
+    <<: *build_template
+    variables:
+        PATH_TO_APP: BE/ServiceDiscovery
       
 #build_7:
 #    stage: build
@@ -93,12 +68,12 @@ deploy:
     stage: deploy
     script:
       - scp BE/BillingService/target/*.jar $UN_IP:/tmp
-      #- scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
-      #- scp BE/Gateway/target/*.jar $UN_IP:/tmp
+      - scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
+      - scp BE/Gateway/target/*.jar $UN_IP:/tmp
       #- scp deploy.sh $UN_IP:/tmp
-      #- scp BE/GoogleMapsMicroservice/target/*.jar $UN_IP:/tmp
+      - scp BE/GoogleMapsMicroservice/target/*.jar $UN_IP:/tmp
       #- scp BE/OrderService/target/*.jar $UN_IP:/tmp
-      #- scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
+      - scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
       #- scp BE/ServiceProvider/target/*.jar $UN_IP:/tmp
       #- ssh $UN_IP "cd /tmp && sudo bash deploy.sh "
 
