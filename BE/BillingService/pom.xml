@@ -7,6 +7,7 @@
     <groupId>com.zaets39</groupId>
     <artifactId>billing</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>billing</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
