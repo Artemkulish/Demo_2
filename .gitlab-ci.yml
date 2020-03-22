@@ -14,21 +14,20 @@ stages:
     - build
     - deploy
 
-.build_template:
+.build_template: &build_template
     stage: build
     script:
         - cd $PATH_TO_APP
-        - mvn clean package 
-     artifacts:
+        - mvn clean package
+    artifacts:
         paths:
-            - $PATH_TO_APP$PATH_TO_JAR
-        expire_in: 1 day
+        - $PATH_TO_APP$PATH_TO_JAR
+        expire_in: 1 week
 
 build_billing:
     <<: *build_template
     variables:
-        - PATH_TO_APP: BE/BillingService
-
+        PATH_TO_APP: BE/BillingService
 
 #build_2:
 #    stage: build
