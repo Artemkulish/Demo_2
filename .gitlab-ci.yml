@@ -32,7 +32,7 @@ build_billing:
 build_customer:
     <<: *build_template
     variables:
-        PATH_TO_APP: BE/CustomerService
+        PATH_TO_APP: BE/CustomerService/customers
 
 build_gateway:
     <<: *build_template
@@ -44,25 +44,20 @@ build_google_maps:
     variables:
         PATH_TO_APP: BE/GoogleMapsMicroservice
 
-#build_order_service:
+#build_order:
 #    <<: *build_template
 #    variables:
 #        PATH_TO_APP: BE/OrderService
         
-build_discovery_service:
+build_discovery:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/ServiceDiscovery
-      
-#build_7:
-#    stage: build
-#    script:
-#      - cd BE/ServiceProvider
-#      - mvn clean package 
-#    artifacts:
-#      paths:
-#      - BE/ServiceProvider/target/*.jar
-#      expire_in: 1 day
+
+#build_provider:
+#    <<: *build_template
+#    variables:
+#        PATH_TO_APP: BE/ServiceProvider
       
 deploy:
     stage: deploy
