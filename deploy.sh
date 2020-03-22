@@ -22,4 +22,3 @@ echo ""
 
 echo "LOAD AVERAGE IS:"
 uptime
-echo ""
