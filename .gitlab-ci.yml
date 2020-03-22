@@ -68,7 +68,7 @@ build_6:
       - cd BE/ServiceDiscovery
       - mvn clean package 
     artifacts:
-     paths:
+      paths:
       - BE/ServiceDiscovery/target/*.jar
       expire_in: 1 day
       
