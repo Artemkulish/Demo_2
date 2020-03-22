@@ -23,52 +23,63 @@ stages:
         paths:
         - $PATH_TO_APP$PATH_TO_JAR
         expire_in: 1 week
+    only:
+        variables:
+            - $CI_COMMIT_MESSAGE =~ /$SERVICE_NAME/
 
 build_billing:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/BillingService
+        SERVICE_NAME: billing
 
-build_customer:
+build_customers:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/CustomerService/customers
+        SERVICE_NAME: customers
 
 build_gateway:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/Gateway
+        SERVICE_NAME: gateway
 
 build_google_maps:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/GoogleMapsMicroservice
+        SERVICE_NAME: maps
 
-#build_order:
-#    <<: *build_template
-#    variables:
-#        PATH_TO_APP: BE/OrderService
-        
 build_discovery:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/ServiceDiscovery
+        SERVICE_NAME: discovery
+        
+#build_order:
+#    <<: *build_template
+#    variables:
+#        PATH_TO_APP: BE/OrderService
+#        SERVICE_NAME: order
 
 #build_provider:
 #    <<: *build_template
 #    variables:
 #        PATH_TO_APP: BE/ServiceProvider
-      
+#        SERVICE_NAME: provider
+         
 deploy:
     stage: deploy
     script:
-      - scp BE/BillingService/target/*.jar $UN_IP:/tmp
-      - scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
-      - scp BE/Gateway/target/*.jar $UN_IP:/tmp
+      - echo "OK"
+      #- scp BE/BillingService/target/*.jar $UN_IP:/tmp
+      #- scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
+      #- scp BE/Gateway/target/*.jar $UN_IP:/tmp
       #- scp deploy.sh $UN_IP:/tmp
-      - scp BE/GoogleMapsMicroservice/target/*.jar $UN_IP:/tmp
+      #- scp BE/GoogleMapsMicroservice/target/*.jar $UN_IP:/tmp
       #- scp BE/OrderService/target/*.jar $UN_IP:/tmp
-      - scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
+      #- scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
       #- scp BE/ServiceProvider/target/*.jar $UN_IP:/tmp
       #- ssh $UN_IP "cd /tmp && sudo bash deploy.sh "
 
