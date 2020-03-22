@@ -7,6 +7,7 @@ variables:
     IP_GATEWAY:     10.128.0.x
     IP_GOOGLE_MAPS: 10.128.0.x
     IP_DISCOVERY:   10.128.0.x
+    SERVICE_NAME: billing
 
 before_script:
     - 'which ssh-agent || ( apt update -y && apt install openssh-client -y)'
