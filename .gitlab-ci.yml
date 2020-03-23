@@ -30,7 +30,7 @@ stages:
         expire_in: 1 week
     only:
         variables:
-            - $CI_COMMIT_MESSAGE =~ /$SERVICE_NAME/
+            - $CI_COMMIT_MESSAGE =~ / $SERVICE_NAME /
 
 build_billing:
     <<: *build_template
