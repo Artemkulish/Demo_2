@@ -38,7 +38,7 @@ build_billing:
         PATH_TO_APP: BE/BillingService
     only:
         variables:
-            - $CI_COMMIT_MESSAGE =~ billing
+            - $CI_COMMIT_MESSAGE =~ /billing/
         
 build_customers:
     <<: *build_template
@@ -46,7 +46,7 @@ build_customers:
         PATH_TO_APP: BE/CustomerService/customers
     only:
         variables:
-            - $CI_COMMIT_MESSAGE =~ customers
+            - $CI_COMMIT_MESSAGE =~ /customers/
         
 build_gateway:
     <<: *build_template
@@ -54,7 +54,7 @@ build_gateway:
         PATH_TO_APP: BE/Gateway
     only:
         variables:
-            - $CI_COMMIT_MESSAGE =~ gateway
+            - $CI_COMMIT_MESSAGE =~ /gateway/
         
 build_google_maps:
     <<: *build_template
@@ -62,7 +62,7 @@ build_google_maps:
         PATH_TO_APP: BE/GoogleMapsMicroservice
     only:
         variables:
-            - $CI_COMMIT_MESSAGE =~ maps
+            - $CI_COMMIT_MESSAGE =~ /maps/
         
 build_discovery:
     <<: *build_template
@@ -70,7 +70,7 @@ build_discovery:
         PATH_TO_APP: BE/ServiceDiscovery
     only:
         variables:
-            - $CI_COMMIT_MESSAGE =~ discovery
+            - $CI_COMMIT_MESSAGE =~ /discovery/
         
 #build_order:
 #    <<: *build_template
