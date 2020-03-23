@@ -28,32 +28,44 @@ stages:
         paths:
         - $PATH_TO_APP$PATH_TO_JAR
         expire_in: 1 day
-    only:
-        changes: 
-            - $PATH_TO_APP
+    #only:
+     #   changes: 
+      #      - $PATH_TO_APP
         #variables:
         #    - $CI_COMMIT_MESSAGE =~ *$CI_JOB_NAME*
     
 build_billing:
     <<: *build_template
     variables:
-        PATH_TO_APP: BE
+        PATH_TO_APP: BE/BillingService
+    only:
+        changes:
+            - BE/BillingService/**/*
         
 build_customers:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/CustomerService/customers
+    only:
+        changes:
+            - BE/CustomerService/customers/**/*
         
 build_gateway:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/Gateway
-        
+    only:
+        changes:
+            - BE/Gateway/**/*
+
 build_google_maps:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/GoogleMapsMicroservice
-        
+    only:
+        changes:
+            - BE/GoogleMapsMicroservice/**/*
+
 build_discovery:
     <<: *build_template
     variables:
