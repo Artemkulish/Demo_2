@@ -7,6 +7,7 @@ variables:
     IP_GATEWAY:     10.128.0.x
     IP_GOOGLE_MAPS: 10.128.0.x
     IP_DISCOVERY:   10.128.0.x
+    name: new
 
 before_script:
     - 'which ssh-agent || ( apt update -y && apt install openssh-client -y)'
@@ -38,7 +39,7 @@ build_billing:
         PATH_TO_APP: BE/BillingService
     only:
         variables:
-            - $CI_COMMIT_MESSAGE =~ /build $CI_JOB_NAME/
+            - $CI_COMMIT_MESSAGE =~ /$name/
         
 build_customers:
     <<: *build_template
