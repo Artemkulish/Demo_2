@@ -30,7 +30,7 @@ stages:
         expire_in: 1 day
     only:
         changes: 
-            - $PATH_TO_APP/**/*
+            - $PATH_TO_APP
         #variables:
         #    - $CI_COMMIT_MESSAGE =~ *$CI_JOB_NAME*
     
