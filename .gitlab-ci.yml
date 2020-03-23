@@ -70,7 +70,10 @@ build_discovery:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/ServiceDiscovery        
-         
+    only:
+        changes:
+            - BE/ServiceDiscovery/**/*
+            
 deploy:
     stage: deploy
     script:
