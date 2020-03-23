@@ -48,25 +48,19 @@ build_gateway:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/Gateway
-    only:
-        variables:
-            - $CI_COMMIT_MESSAGE =~ /gateway/
+        SERVICE_NAME: gateway
         
 build_google_maps:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/GoogleMapsMicroservice
-    only:
-        variables:
-            - $CI_COMMIT_MESSAGE =~ /maps/
+        SERVICE_NAME: maps
         
 build_discovery:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/ServiceDiscovery
-    only:
-        variables:
-            - $CI_COMMIT_MESSAGE =~ /discovery/
+        SERVICE_NAME: discovery
         
          
 deploy:
