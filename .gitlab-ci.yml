@@ -39,7 +39,7 @@ build_billing:
         PATH_TO_APP: BE/BillingService
     only:
         variables:
-            - $CI_COMMIT_MESSAGE =~ /$name/
+            - $CI_COMMIT_MESSAGE =~ $name
         
 build_customers:
     <<: *build_template
