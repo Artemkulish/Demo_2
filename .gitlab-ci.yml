@@ -74,4 +74,3 @@ deploy:
       #- scp BE/GoogleMapsMicroservice/target/*.jar $UN_IP:/tmp
       #- scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
       #- ssh $UN_IP "cd /tmp && sudo bash deploy.sh "
-
