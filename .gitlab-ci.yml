@@ -7,7 +7,6 @@ variables:
     IP_GATEWAY:     10.128.0.x
     IP_GOOGLE_MAPS: 10.128.0.x
     IP_DISCOVERY:   10.128.0.x
-    name: new
 
 before_script:
     - 'which ssh-agent || ( apt update -y && apt install openssh-client -y)'
@@ -29,25 +28,21 @@ stages:
         paths:
         - $PATH_TO_APP$PATH_TO_JAR
         expire_in: 1 week
-    #only:
-        #variables:
-            #- $CI_COMMIT_MESSAGE =~ /$CI_JOB_NAME/
+    only:
+        variables:
+            - $CI_COMMIT_MESSAGE =~ $SERVICE_NAME
 
 build_billing:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/BillingService
-    only:
-        variables:
-            - $CI_COMMIT_MESSAGE =~ $name
+        SERVICE_NAME: billing
         
 build_customers:
     <<: *build_template
     variables:
         PATH_TO_APP: BE/CustomerService/customers
-    only:
-        variables:
-            - $CI_COMMIT_MESSAGE =~ /customers/
+        SERVICE_NAME: customers
         
 build_gateway:
     <<: *build_template
@@ -73,17 +68,6 @@ build_discovery:
         variables:
             - $CI_COMMIT_MESSAGE =~ /discovery/
         
-#build_order:
-#    <<: *build_template
-#    variables:
-#        PATH_TO_APP: BE/OrderService
-#        SERVICE_NAME: order
-
-#build_provider:
-#    <<: *build_template
-#    variables:
-#        PATH_TO_APP: BE/ServiceProvider
-#        SERVICE_NAME: provider
          
 deploy:
     stage: deploy
@@ -94,8 +78,6 @@ deploy:
       #- scp BE/Gateway/target/*.jar $UN_IP:/tmp
       #- scp deploy.sh $UN_IP:/tmp
       #- scp BE/GoogleMapsMicroservice/target/*.jar $UN_IP:/tmp
-      #- scp BE/OrderService/target/*.jar $UN_IP:/tmp
       #- scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
-      #- scp BE/ServiceProvider/target/*.jar $UN_IP:/tmp
       #- ssh $UN_IP "cd /tmp && sudo bash deploy.sh "
 
