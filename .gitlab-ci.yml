@@ -37,7 +37,7 @@ stages:
 build_billing:
     <<: *build_template
     variables:
-        PATH_TO_APP: BE/BillingService
+        PATH_TO_APP: BE
         
 build_customers:
     <<: *build_template
