@@ -37,6 +37,7 @@ build_billing:
     variables:
         PATH_TO_APP: BE/BillingService
         SERVICE_NAME: billing
+        CI_DEBUG_TRACE: "true"
 
 build_customers:
     <<: *build_template
