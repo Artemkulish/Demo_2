@@ -127,6 +127,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>FirstDemo</finalName>
+        <finalName>billing</finalName>
     </build>
 </project>
