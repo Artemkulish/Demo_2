@@ -73,7 +73,7 @@ deploy:
     stage: deploy
     script:
       - echo "OK"
-      - scp deploy.sh $PATH_TO_APP$PATH_TO_JAR $USERNAME@$IP_BILLING:/tmp
+      - scp deploy.sh BE/BillingService$PATH_TO_JAR $USERNAME@$IP_BILLING:/tmp
       #- scp BE/BillingService/target/*.jar $UN_IP:/tmp
       #- scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
       #- scp BE/Gateway/target/*.jar $UN_IP:/tmp
