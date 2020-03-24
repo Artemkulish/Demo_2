@@ -8,7 +8,6 @@
     <artifactId>billing</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>billing</name>
-    <finalName>FirstDemo</finalName>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -128,5 +127,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>FirstDemo</finalName>
     </build>
 </project>
