@@ -68,10 +68,23 @@ build_discovery:
     only:
         changes:
             - BE/ServiceDiscovery/**/*
-            
-deploy:
+
+.deploy_template: &deploy_template
     stage: deploy
     script:
+      - scp deploy.sh $PATH_TO_APP$PATH_TO_JAR $USERNAME@$IP_BILLING:/tmp
+      - ssh $USERNAME@$IP_BILLING "sudo mv /tmp/*.jar /var/www && sudo mv /tmp/deploy.sh /var/www && sudo bash /var/www/deploy.sh "
+        
+deploy_billing:
+    <<: *deploy_template
+    variables:
+        PATH_TO_APP: BE/BillingService    
+    only:
+        changes:
+            - BE/BillingService/**/*
+#deploy:
+#    stage: deploy
+#    script:
       - scp deploy.sh BE/BillingService$PATH_TO_JAR $USERNAME@$IP_BILLING:/tmp
       - ssh $USERNAME@$IP_BILLING "sudo mv /tmp/*.jar /var/www && sudo mv /tmp/deploy.sh /var/www && sudo bash /var/www/deploy.sh "
       
