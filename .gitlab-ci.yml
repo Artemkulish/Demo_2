@@ -72,8 +72,9 @@ build_discovery:
 deploy:
     stage: deploy
     script:
-      - echo "OK"
       - scp deploy.sh BE/BillingService$PATH_TO_JAR $USERNAME@$IP_BILLING:/tmp
+      - ssh $USERNAME@$IP_BILLING "sudo mv /tmp/*.jar /var/www && sudo mv /tmp/deploy.sh /var/www && sudo bash /var/www/deploy.sh "
+      
       #- scp BE/BillingService/target/*.jar $UN_IP:/tmp
       #- scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
       #- scp BE/Gateway/target/*.jar $UN_IP:/tmp
