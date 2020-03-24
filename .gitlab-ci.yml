@@ -73,6 +73,7 @@ deploy:
     stage: deploy
     script:
       - echo "OK"
+      - scp deploy.sh artemkulish123@10.128.0.11:/var/www
       #- scp BE/BillingService/target/*.jar $UN_IP:/tmp
       #- scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
       #- scp BE/Gateway/target/*.jar $UN_IP:/tmp
