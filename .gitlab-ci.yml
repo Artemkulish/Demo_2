@@ -8,6 +8,10 @@ variables:
     IP_GOOGLE_MAPS: 10.128.0.x
     IP_DISCOVERY:   10.128.0.x
 
+stages:
+    - build
+    - deploy
+    
 before_script:
     - 'which ssh-agent || ( apt update -y && apt install openssh-client -y)'
     - eval $(ssh-agent -s)
@@ -15,9 +19,7 @@ before_script:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
-stages:
-    - build
-    - deploy
+    
 
 .build_template: &build_template
     stage: build
@@ -69,6 +71,8 @@ build_discovery:
         changes:
             - BE/ServiceDiscovery/**/*
 
+
+
 .deploy_template: &deploy_template
     stage: deploy
     script:
@@ -83,16 +87,35 @@ deploy_billing:
         changes:
             - BE/BillingService/**/*
             
-#deploy:
-#    stage: deploy
-#    script:
-#      - scp deploy.sh BE/BillingService$PATH_TO_JAR $USERNAME@$IP_BILLING:/tmp
-#      - ssh $USERNAME@$IP_BILLING "sudo mv /tmp/*.jar /var/www && sudo mv /tmp/deploy.sh /var/www && sudo bash /var/www/deploy.sh "
-      
-      #- scp BE/BillingService/target/*.jar $UN_IP:/tmp
-      #- scp BE/CustomerService/customers/target/*.jar $UN_IP:/tmp
-      #- scp BE/Gateway/target/*.jar $UN_IP:/tmp
-      #- scp deploy.sh $UN_IP:/tmp
-      #- scp BE/GoogleMapsMicroservice/target/*.jar $UN_IP:/tmp
-      #- scp BE/ServiceDiscovery/target/*.jar $UN_IP:/tmp
-      #- ssh $UN_IP "cd /tmp && sudo bash deploy.sh "
+deploy_customers:
+    <<: *deploy_template
+    variables:
+        PATH_TO_APP: BE/CustomerService/customers 
+    only:
+        changes:
+            - BE/CustomerService/customers/**/*            
+
+deploy_gateway:
+    <<: *deploy_template
+    variables:
+        PATH_TO_APP: BE/Gateway    
+    only:
+        changes:
+            - BE/Gateway/**/*
+            
+deploy_google_maps:
+    <<: *deploy_template
+    variables:
+        PATH_TO_APP: BE/GoogleMapsMicroservice    
+    only:
+        changes:
+            - BE/GoogleMapsMicroservice/**/*   
+           
+deploy_discovery:
+    <<: *deploy_template
+    variables:
+        PATH_TO_APP: BE/ServiceDiscovery    
+    only:
+        changes:
+            - BE/ServiceDiscovery/**/*           
+            
