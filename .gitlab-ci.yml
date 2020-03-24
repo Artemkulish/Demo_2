@@ -82,6 +82,7 @@ deploy_billing:
     only:
         changes:
             - BE/BillingService/**/*
+            
 #deploy:
 #    stage: deploy
 #    script:
