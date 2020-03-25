@@ -44,7 +44,7 @@ build_customers:
         PATH_TO_APP: BE/CustomerService/customers
     only:
         changes:
-            - BE/CustomerService/customers/**/*
+            - BE/CustomerService/**/*
         
 build_gateway:
     <<: *build_template
@@ -84,7 +84,7 @@ deploy_customers:
         PATH_TO_APP: BE/CustomerService/customers 
     only:
         changes:
-            - BE/CustomerService/customers/**/*            
+            - BE/CustomerService/**/*            
 
 deploy_gateway:
     <<: *deploy_template
