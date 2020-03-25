@@ -19,8 +19,8 @@ build:
         - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc
         - source ~/.bashrc
         - cd ../BE/BillingService
-        #- mvn liquibase:update
-        - mvn liquibase:rollback -Dliquibase.rollbackCount=1
+        - mvn liquibase:update
+        #- mvn liquibase:rollback -Dliquibase.rollbackCount=1
     
 #    - deploy
     
