@@ -17,7 +17,10 @@ build:
         - wget https://github.com/liquibase/liquibase/releases/download/v3.8.8/liquibase-3.8.8.tar.gz
         - tar -xvf liquibase-3.8.8.tar.gz
         - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc
-        - source ~/.bashrc
+        - echo "USER=$UN" >> /etc/environment
+        - echo "PA=$PASS" >> /etc/environment
+        - cat /etc/environment
+        - source ~/.bashrc && source /etc/environment
         - cd ../BE/BillingService
         - mvn liquibase:update
         #- mvn liquibase:rollback -Dliquibase.rollbackCount=1
