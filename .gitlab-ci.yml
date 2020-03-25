@@ -8,22 +8,33 @@ image: gitlab.svagworks.me:5050/root/demo_2
 #    IP_DISCOVERY:   10.166.0.59
 
 stages:
-    - build
-    
-build:
-    stage: build
+#    - build
+#    - deploy    
+    - update
+
+.database_change: &database_change
+    stage: update
     script:
         - mkdir liquibase && cd liquibase
-        - wget https://github.com/liquibase/liquibase/releases/download/v3.8.8/liquibase-3.8.8.tar.gz
-        - tar -xvf liquibase-3.8.8.tar.gz
-        - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc
-        - echo "USER=$UN" >> /etc/environment
-        - echo "PA=$PASS" >> /etc/environment
-        - cat /etc/environment
-        - source ~/.bashrc && source /etc/environment
+        - wget https://github.com/liquibase/liquibase/releases/download/v3.8.8/liquibase-3.8.8.tar.gz && tar -xvf liquibase-3.8.8.tar.gz
+        - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc && source ~/.bashrc && source /etc/environment
         - cd ../BE/BillingService
+
+database_update:
+    <<: *database_change
+    script:
         - mvn liquibase:update
-        #- mvn liquibase:rollback -Dliquibase.rollbackCount=1
+    only:
+        changes:
+            - BE/dbchangelog.xml  
+
+database_rollback:
+    <<: *database_change
+    script:
+        - mvn liquibase:rollback -Dliquibase.rollbackCount=1
+    only:
+        changes:
+            - BE/dbchangelog.xml  
     
 #    - deploy
     
