@@ -12,9 +12,9 @@ stages:
     
 build:
     stage: build
-        script:
-            - ls
-            - mvn -v
+    script:
+        - ls
+        - mvn -v
     
     
     
