@@ -16,7 +16,8 @@ build:
         - ls
         - mvn -v
         - java -version
-    
+        - sudo wget https://github.com/liquibase/liquibase/releases/download/v3.8.8/liquibase-3.8.8.tar.gz
+        - ls
     
     
     
