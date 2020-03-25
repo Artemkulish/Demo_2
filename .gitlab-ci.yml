@@ -5,7 +5,6 @@ variables:
     IP_BILLING:     10.128.0.11
     IP_CUSTOMERS:   10.128.0.x
     IP_GATEWAY:     10.128.0.x
-    IP_GOOGLE_MAPS: 10.128.0.x
     IP_DISCOVERY:   10.128.0.x
 
 stages:
@@ -55,14 +54,6 @@ build_gateway:
         changes:
             - BE/Gateway/**/*
 
-build_google_maps:
-    <<: *build_template
-    variables:
-        PATH_TO_APP: BE/GoogleMapsMicroservice
-    only:
-        changes:
-            - BE/GoogleMapsMicroservice/**/*
-
 build_discovery:
     <<: *build_template
     variables:
@@ -102,15 +93,7 @@ deploy_gateway:
     only:
         changes:
             - BE/Gateway/**/*
-            
-deploy_google_maps:
-    <<: *deploy_template
-    variables:
-        PATH_TO_APP: BE/GoogleMapsMicroservice    
-    only:
-        changes:
-            - BE/GoogleMapsMicroservice/**/*   
-           
+                 
 deploy_discovery:
     <<: *deploy_template
     variables:
