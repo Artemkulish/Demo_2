@@ -22,7 +22,10 @@ build:
         - tar -xvf liquibase-3.8.8.tar.gz
         - ls
         - pwd
-    
+        - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc
+        - source ~/.bashrc
+        - echo $PATH
+        - liquibase --version
     
     
 #    - deploy
