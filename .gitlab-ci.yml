@@ -15,7 +15,7 @@ build:
     script:
         - ls
         - mvn -v
-    
+        - liquibase --version
     
     
     
