@@ -13,19 +13,13 @@ stages:
 build:
     stage: build
     script:
-        - ls
-        - mvn -v
-        - java -version
         - mkdir liquibase && cd liquibase
         - wget https://github.com/liquibase/liquibase/releases/download/v3.8.8/liquibase-3.8.8.tar.gz
-        - ls
         - tar -xvf liquibase-3.8.8.tar.gz
-        - ls
-        - pwd
         - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc
         - source ~/.bashrc
-        - echo $PATH
-        - liquibase --version
+        - cd BE/BillingService
+        - mvn liquibase:update
     
     
 #    - deploy
