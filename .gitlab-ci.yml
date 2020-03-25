@@ -24,17 +24,17 @@ database_update:
     <<: *database_template
     script:
         - mvn liquibase:update
-    only:
-        changes:
-            - BE/dbchangelog.xml  
+    #only:
+    #    changes:
+    #        - BE/dbchangelog.xml  
 
 database_rollback:
     <<: *database_template
     script:
         - mvn liquibase:rollback -Dliquibase.rollbackCount=1
-    only:
-        changes:
-            - BE/dbchangelog.xml  
+    #only:
+    #    changes:
+    #        - BE/dbchangelog.xml  
     
 #    - deploy
     
