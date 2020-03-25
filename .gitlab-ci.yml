@@ -91,7 +91,8 @@ deploy_customers:
 deploy_gateway:
     <<: *deploy_template
     variables:
-        PATH_TO_APP: BE/Gateway    
+        PATH_TO_APP: BE/Gateway  
+        IP: $IP_GATEWAY
     only:
         changes:
             - BE/Gateway/**/*
@@ -99,7 +100,8 @@ deploy_gateway:
 deploy_discovery:
     <<: *deploy_template
     variables:
-        PATH_TO_APP: BE/ServiceDiscovery    
+        PATH_TO_APP: BE/ServiceDiscovery   
+        IP: $IP_DISCOVERY
     only:
         changes:
             - BE/ServiceDiscovery/**/*           
