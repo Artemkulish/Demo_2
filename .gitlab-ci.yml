@@ -23,6 +23,7 @@ build:
         - source ~/.bashrc && source /etc/environment
         - cd ../BE/BillingService
         #- mvn liquibase:update
+        
         - mvn liquibase:rollback -Dliquibase.rollbackCount=1
     
 #    - deploy
