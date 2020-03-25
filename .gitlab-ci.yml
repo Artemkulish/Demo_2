@@ -12,7 +12,7 @@ stages:
 #    - deploy    
     - update
 
-.database_change: &database_change
+.database_template: &database_template
     stage: update
     script:
         - mkdir liquibase && cd liquibase
@@ -21,7 +21,7 @@ stages:
         - cd ../BE/BillingService
 
 database_update:
-    <<: *database_change
+    <<: *database_template
     script:
         - mvn liquibase:update
     only:
@@ -29,7 +29,7 @@ database_update:
             - BE/dbchangelog.xml  
 
 database_rollback:
-    <<: *database_change
+    <<: *database_template
     script:
         - mvn liquibase:rollback -Dliquibase.rollbackCount=1
     only:
