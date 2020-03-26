@@ -22,15 +22,6 @@ stages:
         - mvn liquibase:$FUNCTION
 
 database_update:
-    stage: update
-    script:
-        - mkdir liquibase && cd liquibase
-        - wget https://github.com/liquibase/liquibase/releases/download/v3.8.8/liquibase-3.8.8.tar.gz && tar -xvf liquibase-3.8.8.tar.gz
-        - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc && source ~/.bashrc && source /etc/environment
-        - cd ../BE/BillingService
-        - mvn liquibase:update
-
-database_update:
     <<: *database_template
     variables:
         FUNCTION: update
