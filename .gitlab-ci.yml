@@ -117,7 +117,8 @@ deploy_discovery:
         - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc && source ~/.bashrc && source /etc/environment
         - cd ../BE/BillingService
         - mvn liquibase:$FUNCTION
-
+    when: manual
+    
 database_update:
     <<: *database_template
     variables:
@@ -125,7 +126,6 @@ database_update:
     only:
         changes:
             - BE/dbchangelog.xml  
-    when: manual
     
 database_rollback:
     <<: *database_template
@@ -134,4 +134,3 @@ database_rollback:
     only:
         changes:
             - BE/dbchangelog.xml  
-    when: manual            
