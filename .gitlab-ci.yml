@@ -12,14 +12,14 @@ stages:
 #    - deploy    
     - update
 
-#.database_template: &database_template
-#    stage: update
-#    script:
-#        - mkdir liquibase && cd liquibase
-#        - wget https://github.com/liquibase/liquibase/releases/download/v3.8.8/liquibase-3.8.8.tar.gz && tar -xvf liquibase-3.8.8.tar.gz
-#        - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc && source ~/.bashrc && source /etc/environment
-#        - cd ../BE/BillingService
-#        - mvn liquibase:$FUNCTION
+.database_template: &database_template
+    stage: update
+    script:
+        - mkdir liquibase && cd liquibase
+        - wget https://github.com/liquibase/liquibase/releases/download/v3.8.8/liquibase-3.8.8.tar.gz && tar -xvf liquibase-3.8.8.tar.gz
+        - echo "export PATH=/builds/root/Demo_2/liquibase:$PATH" >> ~/.bashrc && source ~/.bashrc && source /etc/environment
+        - cd ../BE/BillingService
+        - mvn liquibase:$FUNCTION
 
 database_update:
     stage: update
@@ -30,21 +30,23 @@ database_update:
         - cd ../BE/BillingService
         - mvn liquibase:update
 
-#database_update:
-#    <<: *database_template
-#    variables:
-#        FUNCTION: update
-#    only:
-#        changes:
-#            - BE/dbchangelog.xml  
-
-#database_rollback:
-#    <<: *database_template
-#    variables:
-#        FUNCTION: rollback -Dliquibase.rollbackCount=1
-#    only:
-#        changes:
-#            - BE/dbchangelog.xml  
+database_update:
+    <<: *database_template
+    variables:
+        FUNCTION: update
+    only:
+        changes:
+            - BE/dbchangelog.xml  
+    when: manual
+    
+database_rollback:
+    <<: *database_template
+    variables:
+        FUNCTION: rollback -Dliquibase.rollbackCount=1
+    only:
+        changes:
+            - BE/dbchangelog.xml  
+    when: manual
     
 #    - deploy
     
