@@ -2,10 +2,10 @@ image: gitlab.svagworks.me:5050/root/demo_2
 
 variables:
     PATH_TO_JAR:    /target/*.jar
-    IP_BILLING:     10.164.0.33
-    IP_CUSTOMERS:   10.164.0.34
-    IP_GATEWAY:     10.164.0.35
-    IP_DISCOVERY:   10.164.0.36
+    IP_BILLING:     10.164.0.39
+    IP_CUSTOMERS:   10.164.0.40
+    IP_GATEWAY:     10.164.0.41
+    IP_DISCOVERY:   10.164.0.42
 
 stages:
     - build
