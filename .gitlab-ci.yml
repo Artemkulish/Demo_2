@@ -28,7 +28,7 @@ database_update:
     only:
         changes:
             - BE/dbchangelog.xml  
-    when: manual
+    #when: manual
     
 database_rollback:
     <<: *database_template
@@ -37,7 +37,7 @@ database_rollback:
     only:
         changes:
             - BE/dbchangelog.xml  
-    when: manual
+    #when: manual
     
 #    - deploy
     
